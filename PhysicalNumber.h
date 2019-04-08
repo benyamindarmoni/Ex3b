@@ -22,6 +22,7 @@ namespace ariel
         bool operator>(const PhysicalNumber& rhs);
         bool operator<=(const PhysicalNumber& rhs);
         bool operator>=(const PhysicalNumber& rhs);
+        bool  samefamily  (const PhysicalNumber& rhs);
         //+=,-=,+,-
         PhysicalNumber &operator+=(const PhysicalNumber& rhs);
         PhysicalNumber &operator-=(PhysicalNumber& rhs);
