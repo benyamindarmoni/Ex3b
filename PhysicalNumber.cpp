@@ -7,7 +7,11 @@ using namespace std;
 bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
 {
     if(value==rhs.value&&unit==rhs.unit)return true;
+    if()
     return false;
+}
+bool PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
+    
 }
 bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
 {
