@@ -9,15 +9,18 @@ bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
    double a=value;
     double b=rhs.value;
     if(samefamily(rhs)){
-        if(unit==0)a=a\1000;
-        if(unit==0)a=a\1000;
-        if(unit==0)a=a\1000;
-        if(unit==0)a=a\1000;
-        if(unit==0)a=a\1000;
+        if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;
+        if(unit==3)a=a\120;
+        if(unit==4)a=a\60;
+        if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000;
         
     }
     return false;
     
+}
+double PhysicalNumber:: changesize( PhysicalNumber& lhs,PhysicalNumber& rhs){
 }
 bool PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
     if(unit>=0&&unit<=2&&rhs.unit>=0&&rhs.unit<=2||unit>=3&&unit<=5&&rhs.unit>=3&&rhs.unit<=5||
