@@ -6,22 +6,32 @@ using namespace std;
 
 bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
 {
-    if(value==rhs.value&&unit==rhs.unit)return true;
-    if()
+   double a=value;
+    double b=rhs.value;
+    if(samefamily(rhs)){
+        if(unit==0)a=a\1000;
+        if(unit==0)a=a\1000;
+        if(unit==0)a=a\1000;
+        if(unit==0)a=a\1000;
+        if(unit==0)a=a\1000;
+        
+    }
     return false;
+    
 }
 bool PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
-    
+    if(unit>=0&&unit<=2&&rhs.unit>=0&&rhs.unit<=2||unit>=3&&unit<=5&&rhs.unit>=3&&rhs.unit<=5||
+       unit>=6&&unit<=8&&rhs.unit>=6&&rhs.unit<=8)return true;
+    return false;
 }
 bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
 {
-       if(value!=rhs.value||unit!=rhs.unit)return true;
+       if(!samefamily(rhs))return true;
     return false;
 }
 bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 {
-    if(unit>=0&&unit<=2&&rhs.unit>=0&&rhs.unit<=2||unit>=3&&unit<=5&&rhs.unit>=3&&rhs.unit<=5||
-       unit>=6&&unit<=8&&rhs.unit>=6&&rhs.unit<=8){
+    if(samefamily(rhs)){
         
     }
     else
@@ -29,27 +39,48 @@ bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 }
 bool PhysicalNumber::operator>(const PhysicalNumber& rhs)
 {
-    return false;
+    if(samefamily(rhs)){
+        
+    }
+   else
+       return false;
 }
 bool PhysicalNumber::operator<=(const PhysicalNumber& rhs)
 {
+    if(samefamily(rhs)){
+        
+    }
+    else
     return false;
 }
 bool PhysicalNumber::operator>=(const PhysicalNumber& rhs)
 {
+    if(samefamily(rhs)){
+        
+    }
+    else
     return false;
 }
 PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& rhs)
-{
-    return *this;
+{if(samefamily(rhs)){
+        return *this; 
+    }
+    else
+ throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
 }
 PhysicalNumber& PhysicalNumber::operator-=(PhysicalNumber& rhs)
 {
-    return *this;
+    if(samefamily(rhs)){
+        return *this; 
+    }
+    else
+ throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
+ 
 }
 
 PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber& rhs)
 {
+    
     return *this;
 }
 PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
@@ -66,10 +97,12 @@ PhysicalNumber& PhysicalNumber::operator+()
 }
 PhysicalNumber& PhysicalNumber::operator++()
 {
+    value++;
     return *this;
 }
 PhysicalNumber& PhysicalNumber::operator--()
 {
+    value--;
     return *this;
 }
 
