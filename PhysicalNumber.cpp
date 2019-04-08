@@ -6,15 +6,22 @@ using namespace std;
 
 bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
 {
+    if(value==rhs.value&&unit==rhs.unit)return true;
     return false;
 }
 bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
 {
+       if(value!=rhs.value||unit!=rhs.unit)return true;
     return false;
 }
 bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 {
-    return false;
+    if(unit>=0&&unit<=2&&rhs.unit>=0&&rhs.unit<=2||unit>=3&&unit<=5&&rhs.unit>=3&&rhs.unit<=5||
+       unit>=6&&unit<=8&&rhs.unit>=6&&rhs.unit<=8){
+        
+    }
+    else
+        return false;
 }
 bool PhysicalNumber::operator>(const PhysicalNumber& rhs)
 {
