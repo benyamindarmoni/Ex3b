@@ -6,21 +6,29 @@ using namespace std;
 
 bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
 {
+   int family=samefamily(rhs);
    double a=value;
     double b=rhs.value;
-    if(samefamily(rhs)){
-        if(unit==0)a=a\100000;
-        if(unit==1)a=a\1000;
-        if(unit==3)a=a\120;
-        if(unit==4)a=a\60;
-        if(unit==6)a=a\1000000;
-        if(unit==7)a=a\1000;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
          if(rhs.unit==0)b=b\100000;
         if(rhs.unit==1)b=b\1000;
-        if(rhs.unit==3)b=b\120;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
         if(rhs.unit==4)b=b\60;
-        if(rhs.unit==6)b=b\1000000;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
         if(rhs.unit==7)b=b\1000;
+       }
+
         if(a==b)return true;
     }
     return false;
@@ -46,117 +54,244 @@ bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
 }
 bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 {
-     double a=value;
+     int family=samefamily(rhs);
+   double a=value;
     double b=rhs.value;
-    if(samefamily(rhs)){
-        if(unit==0)a=a\100000;
-        if(unit==1)a=a\1000;
-        if(unit==3)a=a\120;
-        if(unit==4)a=a\60;
-        if(unit==6)a=a\1000000;
-        if(unit==7)a=a\1000;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
          if(rhs.unit==0)b=b\100000;
         if(rhs.unit==1)b=b\1000;
-        if(rhs.unit==3)b=b\120;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
         if(rhs.unit==4)b=b\60;
-        if(rhs.unit==6)b=b\1000000;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
         if(rhs.unit==7)b=b\1000;
+       }
+
         if(a<b)return true;
     }
     return false;
+    
 }
 bool PhysicalNumber::operator>(const PhysicalNumber& rhs)
 {
-     double a=value;
+     int family=samefamily(rhs);
+   double a=value;
     double b=rhs.value;
-    if(samefamily(rhs)){
-        if(unit==0)a=a\100000;
-        if(unit==1)a=a\1000;
-        if(unit==3)a=a\120;
-        if(unit==4)a=a\60;
-        if(unit==6)a=a\1000000;
-        if(unit==7)a=a\1000;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
          if(rhs.unit==0)b=b\100000;
         if(rhs.unit==1)b=b\1000;
-        if(rhs.unit==3)b=b\120;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
         if(rhs.unit==4)b=b\60;
-        if(rhs.unit==6)b=b\1000000;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
         if(rhs.unit==7)b=b\1000;
+       }
+
         if(a>b)return true;
     }
     return false;
+    
 }
 bool PhysicalNumber::operator<=(const PhysicalNumber& rhs)
 {
-     double a=value;
+      int family=samefamily(rhs);
+   double a=value;
     double b=rhs.value;
-    if(samefamily(rhs)){
-        if(unit==0)a=a\100000;
-        if(unit==1)a=a\1000;
-        if(unit==3)a=a\120;
-        if(unit==4)a=a\60;
-        if(unit==6)a=a\1000000;
-        if(unit==7)a=a\1000;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
          if(rhs.unit==0)b=b\100000;
         if(rhs.unit==1)b=b\1000;
-        if(rhs.unit==3)b=b\120;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
         if(rhs.unit==4)b=b\60;
-        if(rhs.unit==6)b=b\1000000;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
         if(rhs.unit==7)b=b\1000;
+       }
+
         if(a<=b)return true;
     }
     return false;
+    
 }
 bool PhysicalNumber::operator>=(const PhysicalNumber& rhs)
 {
-    double a=value;
+     int family=samefamily(rhs);
+   double a=value;
     double b=rhs.value;
-    if(samefamily(rhs)){
-        if(unit==0)a=a\100000;
-        if(unit==1)a=a\1000;
-        if(unit==3)a=a\120;
-        if(unit==4)a=a\60;
-        if(unit==6)a=a\1000000;
-        if(unit==7)a=a\1000;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
          if(rhs.unit==0)b=b\100000;
         if(rhs.unit==1)b=b\1000;
-        if(rhs.unit==3)b=b\120;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
         if(rhs.unit==4)b=b\60;
-        if(rhs.unit==6)b=b\1000000;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
         if(rhs.unit==7)b=b\1000;
+       }
+
         if(a>=b)return true;
     }
     return false;
+    
 }
 PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& rhs)
 {
+ 
+    int family=samefamily(rhs);
    double a=value;
     double b=rhs.value;
-    if(samefamily(rhs)){
-        if(unit==0)a=a\100000;
-        if(unit==1)a=a\1000;
-        if(unit==3)a=a\120;
-        if(unit==4)a=a\60;
-        if(unit==6)a=a\1000000;
-        if(unit==7)a=a\1000;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
          if(rhs.unit==0)b=b\100000;
         if(rhs.unit==1)b=b\1000;
-        if(rhs.unit==3)b=b\120;
+         a+=b;
+         value=a;
+         if(unit==0)
+         {
+            value=a*100000;
+         }
+         if(unit==1)
+         {
+              value=a*1000;
+         }
+         return *this;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
         if(rhs.unit==4)b=b\60;
-        if(rhs.unit==6)b=b\1000000;
+           a+=b;
+          value=a;
+          if(unit==3)
+          {
+             value=a*120;
+          }
+          if(unit==4)
+          {
+             value=a*60;
+          }
+          return *this;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
         if(rhs.unit==7)b=b\1000;
-        if(a>=b)
-    
-    }
- throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
+           a+=b;
+          value=a;
+          if(unit==6)
+          {
+             value=a*1000000;
+          }
+          if(unit==7)
+          {
+             value=a*1000;
+          }
+          return *this;
+       }    
+    } 
+   throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
 }
 PhysicalNumber& PhysicalNumber::operator-=(PhysicalNumber& rhs)
 {
-    if(samefamily(rhs)){
-        return *this; 
-    }
-    else
- throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
+     int family=samefamily(rhs);
+   double a=value;
+    double b=rhs.value;
+    if(family!=0){
+      if(family==1){
+         if(unit==0)a=a\100000;
+        if(unit==1)a=a\1000;  
+         if(rhs.unit==0)b=b\100000;
+        if(rhs.unit==1)b=b\1000;
+         a-=b;
+         value=a;
+         if(unit==0)
+         {
+            value=a*100000;
+         }
+         if(unit==1)
+         {
+              value=a*1000;
+         }
+         return *this;
+      }
+       else if(family==2){
+          if(unit==3)a=a\120;
+        if(unit==4)a=a\60; 
+          if(rhs.unit==3)b=b\120;
+        if(rhs.unit==4)b=b\60;
+           a-=b;
+          value=a;
+          if(unit==3)
+          {
+             value=a*120;
+          }
+          if(unit==4)
+          {
+             value=a*60;
+          }
+          return *this;
+       }
+       else {
+          if(unit==6)a=a\1000000;
+        if(unit==7)a=a\1000; 
+          if(rhs.unit==6)b=b\1000000;
+        if(rhs.unit==7)b=b\1000;
+           a-=b;
+          value=a;
+          if(unit==6)
+          {
+             value=a*1000000;
+          }
+          if(unit==7)
+          {
+             value=a*1000;
+          }
+          return *this;
+       }    
+    } 
+   throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
  
 }
 
