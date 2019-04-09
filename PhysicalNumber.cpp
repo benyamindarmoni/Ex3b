@@ -297,15 +297,22 @@ PhysicalNumber& PhysicalNumber::operator-=(PhysicalNumber& rhs)
 
 PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber& rhs)
 {
-    
-    return *this;
+   if(samefamily(rhs)==0)throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
+   PhysicalNumber help(value,unit);
+   help+=rhs;
+   return help;
 }
 PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 {
-    return *this;
+   if(samefamily(rhs)==0)throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
+   PhysicalNumber help(value,unit);
+   help-=rhs;
+   return help;
 }
 PhysicalNumber& PhysicalNumber::operator-()
 {
+   value=value*(-1);
+   
     return *this;
 }
 PhysicalNumber& PhysicalNumber::operator+()
