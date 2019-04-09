@@ -1,4 +1,3 @@
-
 #pragma once
 #include "Unit.h"
 #include <iostream>
@@ -22,11 +21,10 @@ namespace ariel
         bool operator>(const PhysicalNumber& rhs);
         bool operator<=(const PhysicalNumber& rhs);
         bool operator>=(const PhysicalNumber& rhs);
-        int  samefamily  (const PhysicalNumber& rhs);
-      
+        int  samefamily  (const PhysicalNumber& rhs);//help function
         //+=,-=,+,-
         PhysicalNumber &operator+=(const PhysicalNumber& rhs);
-        PhysicalNumber &operator-=(PhysicalNumber& rhs);
+        PhysicalNumber &operator-=(const PhysicalNumber& rhs);
         PhysicalNumber &operator+(const PhysicalNumber& rhs);
         PhysicalNumber &operator-(const PhysicalNumber& rhs);
         //onary 
