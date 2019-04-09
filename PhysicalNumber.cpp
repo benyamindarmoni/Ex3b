@@ -11,7 +11,7 @@ bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
     double b=rhs.value;
     if(family!=0){
       if(family==1){
-         if((int)unit==0)a=a\100000;
+         if(unit==Unit::CM)a=a\100000;
         if((int)unit==1)a=a\1000;  
          if((int)rhs.unit==0)b=b\100000;
         if((int)rhs.unit==1)b=b\1000;
