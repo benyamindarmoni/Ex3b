@@ -12,21 +12,21 @@ bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
     if(family!=0){
       if(family==1){
          if(unit==Unit::CM)a=a\100000;
-        if((int)unit==1)a=a\1000;  
-         if((int)rhs.unit==0)b=b\100000;
-        if((int)rhs.unit==1)b=b\1000;
+        if(unit==Unit::M)a=a\1000;  
+         if(unit==Unit::CM)b=b\100000;
+        if(unit==Unit::M)b=b\1000;
       }
        else if(family==2){
-          if((int)unit==3)a=a\120;
-        if((int)unit==4)a=a\60; 
-          if((int)rhs.unit==3)b=b\120;
-        if((int)rhs.unit==4)b=b\60;
+          if(unit==Unit::SEC)a=a\120;
+        if(unit==Unit::MIN)a=a\60; 
+          if(unit==Unit::SEC)b=b\120;
+        if(unit==Unit::MIN)b=b\60;
        }
        else {
-          if((int)unit==6)a=a\1000000;
-        if((int)unit==7)a=a\1000; 
-          if((int)rhs.unit==6)b=b\1000000;
-        if((int)rhs.unit==7)b=b\1000;
+          if(unit==Unit::G)a=a\1000000;
+        if(unit==Unit::KG)a=a\1000; 
+          if(unit==Unit::G)b=b\1000000;
+        if(unit==Unit::KG)b=b\1000;
        }
 
         if(a==b)return true;
