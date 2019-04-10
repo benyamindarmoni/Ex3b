@@ -167,6 +167,7 @@ PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& rhs)
     double b=rhs.value;
     if(family!=0){
       if(family==1){
+         
          if((int)unit==0)a=a/100000;
         if((int)unit==1)a=a/1000;  
          if((int)rhs.unit==0)b=b/100000;
@@ -176,11 +177,13 @@ PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& rhs)
          if((int)unit==0)
          {
             value=a*100000;
+              
          }
          if((int)unit==1)
          {
               value=a*1000;
-         }
+            
+         } 
          return *this;
       }
        else if(family==2){
@@ -310,25 +313,37 @@ PhysicalNumber& PhysicalNumber::operator+()
 {
     return *this;
 }
-PhysicalNumber& PhysicalNumber::operator++()
+PhysicalNumber PhysicalNumber::operator++(int)//postfix
 {
-   
+    PhysicalNumber temp = *this;
+   ++*this;
+   return temp;
+}
+PhysicalNumber& PhysicalNumber::operator++()//prefix
+{
     value++;
     return *this;
 }
-PhysicalNumber& PhysicalNumber::operator--()
+PhysicalNumber PhysicalNumber::operator--(int)//postfix
+{
+  PhysicalNumber temp = *this;
+   --*this;
+   return temp;
+}
+
+PhysicalNumber& PhysicalNumber::operator--()//prefix
 {
     
     value--;
     return *this;
 }
 
-std::istream& operator>>(std::istream& in, const PhysicalNumber& a)
+/*istream& operator>>(istream& in,  PhysicalNumber& a)
 {char tmp;
-   // in>>a.value>>tmp>>a.unit>>tmp;
+    in>>a.value>>tmp>>a.unit>>tmp;
        return in;
-}
- ostream& operator<<(ostream& out, const ariel::PhysicalNumber& a)
+}*/
+ ostream& operator<<(ostream& out,   PhysicalNumber& a)
 {
     int b=(int)a.unit;
     string unitName="";
