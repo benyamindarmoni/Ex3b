@@ -1,3 +1,4 @@
+
 #pragma once
 #include "Unit.h"
 #include <iostream>
@@ -21,7 +22,7 @@ namespace ariel
         bool operator>(const PhysicalNumber& rhs);
         bool operator<=(const PhysicalNumber& rhs);
         bool operator>=(const PhysicalNumber& rhs);
-        int  samefamily  (const PhysicalNumber& rhs);//help function
+               int  samefamily  (const PhysicalNumber& rhs);
         //+=,-=,+,-
         PhysicalNumber &operator+=(const PhysicalNumber& rhs);
         PhysicalNumber &operator-=(const PhysicalNumber& rhs);
@@ -31,8 +32,10 @@ namespace ariel
         PhysicalNumber& operator-();
         PhysicalNumber& operator+();
         //++,--
-        PhysicalNumber& operator++();
-        PhysicalNumber& operator--();
+        PhysicalNumber operator++(int);
+         PhysicalNumber& operator++();
+        PhysicalNumber operator--(int);
+          PhysicalNumber& operator--();
         //stream
         friend std::istream& operator>>(std::istream& in, const PhysicalNumber& a);
         friend ostream& operator<<(ostream& out, const PhysicalNumber& a);
