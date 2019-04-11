@@ -13,7 +13,9 @@ int PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
 }
 bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
 {
+    
       int family=samefamily(rhs);
+      if(family==0) throw std::invalid_argument( "not the same dimention!" );  
    double a=value;
     double b=rhs.value;
     if(family!=0){
@@ -47,6 +49,7 @@ bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
 bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 {
         int family=samefamily(rhs);
+        if(family==0) throw std::invalid_argument( "not the same dimention!" );  
    double a=value;
     double b=rhs.value;
     if(family!=0){
@@ -76,6 +79,7 @@ bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 bool PhysicalNumber::operator>(const PhysicalNumber& rhs)
 {
         int family=samefamily(rhs);
+           if(family==0) throw std::invalid_argument( "not the same dimention!" );  
    double a=value;
     double b=rhs.value;
     if(family!=0){
@@ -105,6 +109,7 @@ bool PhysicalNumber::operator>(const PhysicalNumber& rhs)
 bool PhysicalNumber::operator<=(const PhysicalNumber& rhs)
 {
          int family=samefamily(rhs);
+            if(family==0) throw std::invalid_argument( "not the same dimention!" );  
    double a=value;
     double b=rhs.value;
     if(family!=0){
@@ -134,6 +139,7 @@ bool PhysicalNumber::operator<=(const PhysicalNumber& rhs)
 bool PhysicalNumber::operator>=(const PhysicalNumber& rhs)
 {
         int family=samefamily(rhs);
+           if(family==0) throw std::invalid_argument( "not the same dimention!" );  
    double a=value;
     double b=rhs.value;
     if(family!=0){
@@ -287,21 +293,25 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& rhs)
 
 PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber& rhs)
 {
+//cout<<samefamily(rhs)<<"!!";
     if(samefamily(rhs)==0)throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
-  
-   *this+=rhs;
+else{
+    
+  PhysicalNumber* help=new PhysicalNumber (0,unit);
+   *help+=rhs;
+   *help+=*this;
    return 
-   *this;
- 
+   *help;
+ }
 }
 PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 {
-  
-    if(samefamily(rhs)==0)throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
-   
-   *this+=rhs;
+   if(samefamily(rhs)==0)throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
+  PhysicalNumber* help=new PhysicalNumber (0,unit);
+   *help+=rhs;
+   *help-=*this;
    return 
-   *this;
+   *help;
 }
 PhysicalNumber& PhysicalNumber::operator-()
 {
@@ -313,22 +323,22 @@ PhysicalNumber& PhysicalNumber::operator+()
 {
     return *this;
 }
-PhysicalNumber PhysicalNumber::operator++(int)//postfix
+PhysicalNumber& PhysicalNumber::operator++(int)//postfix
 {
-    PhysicalNumber temp = *this;
+    PhysicalNumber* temp = new PhysicalNumber(value,unit);
    ++*this;
-   return temp;
+   return *temp;
 }
 PhysicalNumber& PhysicalNumber::operator++()//prefix
 {
     value++;
     return *this;
 }
-PhysicalNumber PhysicalNumber::operator--(int)//postfix
+PhysicalNumber& PhysicalNumber::operator--(int)//postfix
 {
-  PhysicalNumber temp = *this;
+  PhysicalNumber* temp = new PhysicalNumber(value,unit);
    --*this;
-   return temp;
+   return *temp;
 }
 
 PhysicalNumber& PhysicalNumber::operator--()//prefix
@@ -343,7 +353,7 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
     in>>a.value>>tmp>>a.unit>>tmp;
        return in;
 }*/
- ostream& operator<<(ostream& out,   PhysicalNumber& a)
+ ostream& operator<<(ostream& out,  PhysicalNumber& a)
 {
     int b=(int)a.unit;
     string unitName="";
