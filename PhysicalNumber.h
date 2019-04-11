@@ -26,19 +26,19 @@ namespace ariel
         //+=,-=,+,-
         PhysicalNumber &operator+=(const PhysicalNumber& rhs);
         PhysicalNumber &operator-=(const PhysicalNumber& rhs);
-        PhysicalNumber &operator+(const PhysicalNumber& rhs);
-        PhysicalNumber &operator-(const PhysicalNumber& rhs);
+        PhysicalNumber& operator+(const PhysicalNumber& rhs);
+        PhysicalNumber& operator-(const PhysicalNumber& rhs);
         //onary 
         PhysicalNumber& operator-();
         PhysicalNumber& operator+();
         //++,--
-        PhysicalNumber operator++(int);
+        PhysicalNumber& operator++(int);
          PhysicalNumber& operator++();
-        PhysicalNumber operator--(int);
+        PhysicalNumber& operator--(int);
           PhysicalNumber& operator--();
         //stream
-        friend std::istream& operator>>(std::istream& in, const PhysicalNumber& a);
-        friend ostream& operator<<(ostream& out, const PhysicalNumber& a);
+        friend std::istream& operator>>(istream& in, const PhysicalNumber& a);
+         friend ostream& operator<<(ostream& out, const PhysicalNumber& a);
        
     };
 }
