@@ -348,12 +348,12 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
     return *this;
 }
 
-/*istream& ariel::operator>>(istream& in, ariel:: PhysicalNumber& a)
+/*istream& operator>>(istream& in, PhysicalNumber& a)
 {char tmp;
     in>>a.value>>tmp>>a.unit>>tmp;
        return in;
 }*/
- ostream& ariel::operator<<(ostream& out,  ariel::PhysicalNumber& a)
+ ostream& operator<<(ostream& out, PhysicalNumber& a)
 {
     int b=(int)a.unit;
     string unitName="";
