@@ -349,9 +349,9 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
     string unitName="";
     switch (b)
       { 
-         case 0: unitName="m"; break;
-         case 1: unitName="km";break;
-         case 2: unitName="cm";break;
+         case 0: unitName="cm"; break;
+         case 1: unitName="m";break;
+         case 2: unitName="km";break;
          case 3: unitName="sec";break;
          case 4: unitName="min";break;
          case 5: unitName="hour";break;
