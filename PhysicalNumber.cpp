@@ -353,7 +353,7 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
     in>>a.value>>tmp>>a.unit>>tmp;
        return in;
 }*/
- ostream& operator<<(ostream& out, PhysicalNumber& a)
+ ostream&  PhysicalNumber::operator<<(ostream& out, PhysicalNumber& a)
 {
     int b=(int)a.unit;
     string unitName="";
