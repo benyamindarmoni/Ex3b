@@ -3,6 +3,8 @@
 #include "PhysicalNumber.h"
 using namespace ariel;
 using namespace std;
+#include "Unit.h"
+#include <stdexcept>
 int PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
     if((int)unit>=0&&(int)unit<=2&&(int)rhs.unit>=0&&(int)rhs.unit<=2)return 1;
   
@@ -11,14 +13,7 @@ int PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
     else
        return 0;
 }
-bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
-{
-    
-      int family=samefamily(rhs);
-      if(family==0) throw std::invalid_argument( "not the same dimention!" );  
-   double a=value;
-    double b=rhs.value;
-    if(family!=0){
+void PhysicalNumber:: convert(double& a,double& b,int family,const PhysicalNumber& rhs){
       if(family==1){
          if(unit==Unit::CM)a=a/100000;
         if(unit==Unit::M)a=a/1000;  
@@ -38,8 +33,17 @@ bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
         if(rhs.unit==Unit::KG)b=b/1000;
        }
 
-        if(a==b)return true;
-    }
+}
+bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
+{   
+  
+      int family=samefamily(rhs);
+      if(family==0) throw std::invalid_argument( "not the same dimention!" ); 
+      double a=value;
+      double b=rhs.value; 
+      convert(a,b,family,rhs);
+      if(a==b)return true;
+    
     return false;
 }
 bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
@@ -48,122 +52,50 @@ bool PhysicalNumber::operator!=(const PhysicalNumber& rhs)
    return true;}
 bool PhysicalNumber::operator<(const PhysicalNumber& rhs)
 {
-        int family=samefamily(rhs);
-        if(family==0) throw std::invalid_argument( "not the same dimention!" );  
-   double a=value;
-    double b=rhs.value;
-    if(family!=0){
-      if(family==1){
-         if(unit==Unit::CM)a=a/100000;
-        if(unit==Unit::M)a=a/1000;  
-         if(rhs.unit==Unit::CM)b=b/100000;
-        if(rhs.unit==Unit::M)b=b/1000;
-      }
-       else if(family==2){
-          if(unit==Unit::SEC)a=a/120;
-        if(unit==Unit::MIN)a=a/60; 
-          if(rhs.unit==Unit::SEC)b=b/120;
-        if(rhs.unit==Unit::MIN)b=b/60;
-       }
-       else {
-          if(unit==Unit::G)a=a/1000000;
-        if(unit==Unit::KG)a=a/1000; 
-          if(rhs.unit==Unit::G)b=b/1000000;
-        if(rhs.unit==Unit::KG)b=b/1000;
-       }
-
-        if(a<b)return true;
-    }
+      
+      int family=samefamily(rhs);
+      if(family==0) throw std::invalid_argument( "not the same dimention!" ); 
+      double a=value;
+      double b=rhs.value; 
+      convert(a,b,family,rhs);
+      if(a<b)return true;
+    
     return false;
 }
 bool PhysicalNumber::operator>(const PhysicalNumber& rhs)
 {
-        int family=samefamily(rhs);
-           if(family==0) throw std::invalid_argument( "not the same dimention!" );  
-   double a=value;
-    double b=rhs.value;
-    if(family!=0){
-      if(family==1){
-         if(unit==Unit::CM)a=a/100000;
-        if(unit==Unit::M)a=a/1000;  
-         if(rhs.unit==Unit::CM)b=b/100000;
-        if(rhs.unit==Unit::M)b=b/1000;
-      }
-       else if(family==2){
-          if(unit==Unit::SEC)a=a/120;
-        if(unit==Unit::MIN)a=a/60; 
-          if(rhs.unit==Unit::SEC)b=b/120;
-        if(rhs.unit==Unit::MIN)b=b/60;
-       }
-       else {
-          if(unit==Unit::G)a=a/1000000;
-        if(unit==Unit::KG)a=a/1000; 
-          if(rhs.unit==Unit::G)b=b/1000000;
-        if(rhs.unit==Unit::KG)b=b/1000;
-       }
-
-        if(a>b)return true;
-    }
+      
+      int family=samefamily(rhs);
+      if(family==0) throw std::invalid_argument( "not the same dimention!" ); 
+      double a=value;
+      double b=rhs.value; 
+      convert(a,b,family,rhs);
+      if(a>b)return true;
+    
     return false;
 }
 bool PhysicalNumber::operator<=(const PhysicalNumber& rhs)
 {
-         int family=samefamily(rhs);
-            if(family==0) throw std::invalid_argument( "not the same dimention!" );  
-   double a=value;
-    double b=rhs.value;
-    if(family!=0){
-      if(family==1){
-         if(unit==Unit::CM)a=a/100000;
-        if(unit==Unit::M)a=a/1000;  
-         if(rhs.unit==Unit::CM)b=b/100000;
-        if(rhs.unit==Unit::M)b=b/1000;
-      }
-       else if(family==2){
-          if(unit==Unit::SEC)a=a/120;
-        if(unit==Unit::MIN)a=a/60; 
-          if(rhs.unit==Unit::SEC)b=b/120;
-        if(rhs.unit==Unit::MIN)b=b/60;
-       }
-       else {
-          if(unit==Unit::G)a=a/1000000;
-        if(unit==Unit::KG)a=a/1000; 
-          if(rhs.unit==Unit::G)b=b/1000000;
-        if(rhs.unit==Unit::KG)b=b/1000;
-       }
-
-        if(a<=b)return true;
-    }
+       
+      int family=samefamily(rhs);
+      if(family==0) throw std::invalid_argument( "not the same dimention!" ); 
+      double a=value;
+      double b=rhs.value; 
+      convert(a,b,family,rhs);
+      if(a<=b)return true;
+    
     return false;
 }
 bool PhysicalNumber::operator>=(const PhysicalNumber& rhs)
 {
-        int family=samefamily(rhs);
-           if(family==0) throw std::invalid_argument( "not the same dimention!" );  
-   double a=value;
-    double b=rhs.value;
-    if(family!=0){
-      if(family==1){
-         if(unit==Unit::CM)a=a/100000;
-        if(unit==Unit::M)a=a/1000;  
-         if(rhs.unit==Unit::CM)b=b/100000;
-        if(rhs.unit==Unit::M)b=b/1000;
-      }
-       else if(family==2){
-          if(unit==Unit::SEC)a=a/120;
-        if(unit==Unit::MIN)a=a/60; 
-          if(rhs.unit==Unit::SEC)b=b/120;
-        if(rhs.unit==Unit::MIN)b=b/60;
-       }
-       else {
-          if(unit==Unit::G)a=a/1000000;
-        if(unit==Unit::KG)a=a/1000; 
-          if(rhs.unit==Unit::G)b=b/1000000;
-        if(rhs.unit==Unit::KG)b=b/1000;
-       }
-
-        if(a>=b)return true;
-    }
+     
+      int family=samefamily(rhs);
+      if(family==0) throw std::invalid_argument( "not the same dimention!" ); 
+      double a=value;
+      double b=rhs.value; 
+      convert(a,b,family,rhs);
+      if(a>=b)return true;
+    
     return false;
 }
 PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& rhs)
@@ -293,13 +225,13 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& rhs)
 
 PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber& rhs)
 {
-//cout<<samefamily(rhs)<<"!!";
+
     if(samefamily(rhs)==0)throw std::invalid_argument( "NOT THE SAME DIMENSION!" );  
 else{
     
-  PhysicalNumber* help=new PhysicalNumber (0,unit);
+  PhysicalNumber* help=new PhysicalNumber(0,unit);
    *help+=rhs;
-   *help+=*this;
+  *help+=*this;
    return 
    *help;
  }
@@ -348,13 +280,14 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
     return *this;
 }
 
-/*istream& ariel::operator>>(istream& in, PhysicalNumber& a)
+/*istream& operator>>(istream& in,  PhysicalNumber& a)
 {char tmp;
     in>>a.value>>tmp>>a.unit>>tmp;
        return in;
 }*/
- ostream&  ariel::operator<<(ostream& out, PhysicalNumber& a)
+ ostream&  operator<<(ostream& out,  PhysicalNumber& a)
 {
+
     int b=(int)a.unit;
     string unitName="";
     switch (b)
