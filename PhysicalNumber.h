@@ -38,7 +38,7 @@ namespace ariel
           PhysicalNumber& operator--();
           void convert(double& ,double& ,int ,const PhysicalNumber& );
         //stream
-        friend istream& operator>>(std::istream& in, const PhysicalNumber& a);
+        friend istream& operator>>(std::istream& in,  PhysicalNumber& a);
          friend ostream& operator<<(ostream& out, const PhysicalNumber& a);
        
     };
