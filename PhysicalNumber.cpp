@@ -79,7 +79,7 @@ bool PhysicalNumber::operator==(const PhysicalNumber& rhs)
 
     int family=samefamily(rhs);
 
-    if(family==0) throw std::invalid_argument( "not the same dimention!" );
+    if(family==0) throw std::invalid_argument( "not the same dimension!" );
 
     double a=value;
 
@@ -559,32 +559,29 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     in>>temp1;
     posStart=temp1.find('[');
     posEnd=temp1.find(']');
-    if(posStart==0) //if the [] appear in the begging without the number before
+    if((posStart<=0) || (posEnd!=temp1.length()-1) || (posStart+1==posEnd)|| (posEnd<0))
         throw invalid_argument("The input syntax in incorrect");
-    if(posEnd!=temp1.length()-1)// if the string continues after the []
-        throw invalid_argument("The input syntax in incorrect");
-    if(posStart+1==posEnd) //if the [] are empty
-        throw invalid_argument("The input syntax in incorrect");
+
     value1=temp1.substr(0,posStart);
     a.value=atof(value1.c_str());
     temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
-    if(temp1=="cm")
+    if(temp1.compare("cm"))
         a.unit=Unit::CM;
-    else if(temp1=="m")
+    else if(temp1.compare("m")|| temp1.compare("M"))
         a.unit=Unit::M;
-    else if(temp1=="km")
+    else if(temp1.compare("km")||temp1.compare("KM"))
         a.unit=Unit::KM;
-    else if(temp1=="sec")
+    else if(temp1.compare("sec")|| temp1.compare("SEC"))
         a.unit=Unit::SEC;
-    else if(temp1=="min")
+    else if(temp1.compare("min")|| temp1.compare("MIN"))
         a.unit=Unit::MIN;
-    else if(temp1=="hour")
+    else if(temp1.compare("hour")|| temp1.compare("HOUR"))
         a.unit=Unit::HOUR;
-    else if(temp1=="g")
+    else if(temp1.compare("g")|| temp1.compare("G"))
         a.unit=Unit::G;
-    else if(temp1=="kg")
+    else if(temp1.compare("kg")|| temp1.compare("KG"))
         a.unit=Unit::KG;
-    else if(temp1=="ton")
+    else if(temp1.compare("ton")|| temp1.compare("TON"))
         a.unit=Unit::TON;
     else
         throw invalid_argument("The unit was not defined");
