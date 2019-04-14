@@ -350,7 +350,7 @@ PhysicalNumber PhysicalNumber::operator-()
     return PhysicalNumber(((this->value)*(-1)),this->unit);
 }
 
-PhysicalNumber& PhysicalNumber::operator+()
+PhysicalNumber PhysicalNumber::operator+()
 
 {
     return *this;
