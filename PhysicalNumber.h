@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "Unit.h"
@@ -20,7 +19,12 @@ namespace ariel
         double value;
 
         Unit unit;
-        PhysicalNumber();
+        PhysicalNumber(const PhysicalNumber &a)
+        {
+            this->value=a.value;
+            this->unit=a.unit;
+        }
+
         PhysicalNumber(double num, Unit type):value(num),unit(type)
 
         {
@@ -57,9 +61,9 @@ namespace ariel
 
         PhysicalNumber& operator-(const PhysicalNumber& rhs);
 
-        //onary 
+        //onary
 
-        PhysicalNumber& operator-();
+        PhysicalNumber operator-();
 
         PhysicalNumber& operator+();
 
@@ -86,4 +90,4 @@ namespace ariel
 
 
 
-} 
+}
