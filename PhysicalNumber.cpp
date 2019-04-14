@@ -11,6 +11,7 @@ using namespace std;
 #include "Unit.h"
 
 #include <stdexcept>
+#include <stdlib.h>
 
 int PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
 
@@ -495,18 +496,14 @@ PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 PhysicalNumber& PhysicalNumber::operator-()
 
 {
-
-   PhysicalNumber a(-(this->value),this->unit);
+    PhysicalNumber a(-(this->value),this->unit);
     return a;
-
 }
 
 PhysicalNumber& PhysicalNumber::operator+()
 
 {
-
     return *this;
-
 }
 
 PhysicalNumber& PhysicalNumber::operator++(int)//postfix
@@ -524,7 +521,6 @@ PhysicalNumber& PhysicalNumber::operator++(int)//postfix
 PhysicalNumber& PhysicalNumber::operator++()//prefix
 
 {
-
     value++;
 
     return *this;
@@ -540,7 +536,6 @@ PhysicalNumber& PhysicalNumber::operator--(int)//postfix
     --*this;
 
     return *temp;
-
 }
 
 
@@ -548,13 +543,9 @@ PhysicalNumber& PhysicalNumber::operator--(int)//postfix
 PhysicalNumber& PhysicalNumber::operator--()//prefix
 
 {
-
-
-
     value--;
 
     return *this;
-
 }
 
 
@@ -564,13 +555,21 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
 istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     string temp1, value1;
     int posStart=0;
+    int posEnd=0;
     in>>temp1;
     posStart=temp1.find('[');
+    posEnd=temp1.find(']');
+    if(posStart==0) //if the [] appear in the begging without the number before
+        throw invalid_argument("The input syntax in incorrect");
+    if(posEnd!=temp1.length()-1)// if the string continues after the []
+        throw invalid_argument("The input syntax in incorrect");
+    if(posStart+1==posEnd) //if the [] are empty
+        throw invalid_argument("The input syntax in incorrect");
     value1=temp1.substr(0,posStart);
     a.value=atof(value1.c_str());
     temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
     if(temp1=="cm")
-        a.unit=Unit ::CM;
+        a.unit=Unit::CM;
     else if(temp1=="m")
         a.unit=Unit::M;
     else if(temp1=="km")
