@@ -496,8 +496,6 @@ PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 PhysicalNumber PhysicalNumber::operator-()
 
 {
-    //PhysicalNumber a(-(this->value),this->unit);
-
     return PhysicalNumber(((this->value)*(-1)),this->unit);
 }
 
@@ -553,7 +551,7 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
 
 
 
-istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) 
+istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
 {
     string temp1, value1;
     int posStart=0;
@@ -562,34 +560,34 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
     posStart=temp1.find('[');
     posEnd=temp1.find(']');
     if((posStart<=0) || (posEnd!=temp1.length()-1) || (posStart+1==posEnd)|| (posEnd<0))
-        throw invalid_argument("The input syntax in incorrect");
-    else
-    {
-    value1=temp1.substr(0,posStart);
-    a.value=stod(value1);
-    temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
-    if((temp1=="cm")|| (temp1=="CM"))
-        a.unit=Unit::CM;
-    else if((temp1=="m")|| (temp1=="M"))
-        a.unit=Unit::M;
-    else if((temp1=="km")||(temp1=="KM"))
-        a.unit=Unit::KM;
-    else if((temp1=="sec")|| (temp1=="SEC"))
-        a.unit=Unit::SEC;
-    else if((temp1=="min")|| (temp1=="MIN"))
-        a.unit=Unit::MIN;
-    else if((temp1=="hour")|| (temp1=="HOUR"))
-        a.unit=Unit::HOUR;
-    else if((temp1=="g")|| (temp1=="G"))
-        a.unit=Unit::G;
-    else if((temp1=="kg")|| (temp1=="KG"))
-        a.unit=Unit::KG;
-    else if((temp1=="ton")|| (temp1=="TON"))
-        a.unit=Unit::TON;
-    else
-        throw invalid_argument("The unit was not defined");
+        return in;
+    else {
+        value1 = temp1.substr(0, posStart);
+        a.value = stod(value1);
+        temp1 = temp1.substr(posStart + 1, temp1.length() - 2 - posStart);
+        if ((temp1 == "cm") || (temp1 == "CM"))
+            a.unit = Unit::CM;
+        else if ((temp1 == "m") || (temp1 == "M"))
+            a.unit = Unit::M;
+        else if ((temp1 == "km") || (temp1 == "KM"))
+            a.unit = Unit::KM;
+        else if ((temp1 == "sec") || (temp1 == "SEC"))
+            a.unit = Unit::SEC;
+        else if ((temp1 == "min") || (temp1 == "MIN"))
+            a.unit = Unit::MIN;
+        else if ((temp1 == "hour") || (temp1 == "HOUR"))
+            a.unit = Unit::HOUR;
+        else if ((temp1 == "g") || (temp1 == "G"))
+            a.unit = Unit::G;
+        else if ((temp1 == "kg") || (temp1 == "KG"))
+            a.unit = Unit::KG;
+        else if ((temp1 == "ton") || (temp1 == "TON"))
+            a.unit = Unit::TON;
+        else
+            return in;
     }
     return in;
+    
 }
 
 
