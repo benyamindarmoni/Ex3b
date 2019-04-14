@@ -496,11 +496,10 @@ PhysicalNumber& PhysicalNumber::operator-()
 
 {
 
-    this->value=-(this->value);
-
-
-
-    return *this;
+    PhysicalNumber a;
+    a.unit=this->unit;
+    a.value=-this->value;
+    return a;
 
 }
 
