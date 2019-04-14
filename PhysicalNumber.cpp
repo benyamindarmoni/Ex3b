@@ -551,7 +551,6 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
 
 
 
-
 istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     string temp1, value1;
     int posStart=0;
@@ -565,23 +564,23 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     value1=temp1.substr(0,posStart);
     a.value=atof(value1.c_str());
     temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
-    if(temp1.compare("cm"))
+    if((temp1=="cm")|| (temp1=="CM"))
         a.unit=Unit::CM;
-    else if(temp1.compare("m")|| temp1.compare("M"))
+    else if((temp1=="m")|| (temp1=="M"))
         a.unit=Unit::M;
-    else if(temp1.compare("km")||temp1.compare("KM"))
+    else if((temp1=="km")||(temp1=="KM"))
         a.unit=Unit::KM;
-    else if(temp1.compare("sec")|| temp1.compare("SEC"))
+    else if((temp1=="sec")|| (temp1=="SEC"))
         a.unit=Unit::SEC;
-    else if(temp1.compare("min")|| temp1.compare("MIN"))
+    else if((temp1=="min")|| (temp1=="MIN"))
         a.unit=Unit::MIN;
-    else if(temp1.compare("hour")|| temp1.compare("HOUR"))
+    else if((temp1=="hour")|| (temp1=="HOUR"))
         a.unit=Unit::HOUR;
-    else if(temp1.compare("g")|| temp1.compare("G"))
+    else if((temp1=="g")|| (temp1=="G"))
         a.unit=Unit::G;
-    else if(temp1.compare("kg")|| temp1.compare("KG"))
+    else if((temp1=="kg")|| (temp1=="KG"))
         a.unit=Unit::KG;
-    else if(temp1.compare("ton")|| temp1.compare("TON"))
+    else if((temp1=="ton")|| (temp1=="TON"))
         a.unit=Unit::TON;
     else
         throw invalid_argument("The unit was not defined");
