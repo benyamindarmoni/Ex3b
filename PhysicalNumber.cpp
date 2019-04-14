@@ -245,11 +245,11 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& rhs)
 
         else if(family==2){
 
-            if((int)unit==3)a=a/120;
+            if((int)unit==3)a=a/3600;
 
             if((int)unit==4)a=a/60;
 
-            if((int)rhs.unit==3)b=b/120;
+            if((int)rhs.unit==3)b=b/3600;
 
             if((int)rhs.unit==4)b=b/60;
 
@@ -261,7 +261,7 @@ PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& rhs)
 
             {
 
-                value=a*120;
+                value=a*3600;
 
             }
 
