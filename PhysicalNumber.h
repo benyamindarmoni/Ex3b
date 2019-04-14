@@ -65,7 +65,7 @@ namespace ariel
 
         PhysicalNumber operator-();
 
-        PhysicalNumber& operator+();
+        PhysicalNumber operator+();
 
         //++,--
 
