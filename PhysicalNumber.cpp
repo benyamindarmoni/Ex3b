@@ -496,7 +496,7 @@ PhysicalNumber& PhysicalNumber::operator-()
 
 {
 
-    value=value*(-1);
+    this->value=-(this->value);
 
 
 
