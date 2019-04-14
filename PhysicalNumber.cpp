@@ -553,7 +553,8 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
 
 
 
-istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
+istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) 
+{
     string temp1, value1;
     int posStart=0;
     int posEnd=0;
@@ -562,6 +563,8 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     posEnd=temp1.find(']');
     if((posStart<=0) || (posEnd!=temp1.length()-1) || (posStart+1==posEnd)|| (posEnd<0))
         throw invalid_argument("The input syntax in incorrect");
+    else
+    {
     value1=temp1.substr(0,posStart);
     a.value=stod(value1);
     temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
@@ -585,6 +588,7 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
         a.unit=Unit::TON;
     else
         throw invalid_argument("The unit was not defined");
+    }
     return in;
 }
 
