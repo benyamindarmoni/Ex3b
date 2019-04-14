@@ -570,7 +570,6 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     in>>temp1;
     posStart=temp1.find('[');
     value=temp1.substr(0,posStart);
-    2800[cm]
     temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
     if(temp1=="cm")
         a.unit=Unit ::CM;
