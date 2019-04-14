@@ -483,11 +483,13 @@ PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 
     PhysicalNumber* help=new PhysicalNumber (0,unit);
 
-    *help+=*this;
+    *help+=rhs;
 
-    *help-=rhs;
+    *help-=*this;
 
-    return *help;
+    return
+
+            *help;
 
 }
 
