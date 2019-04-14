@@ -483,13 +483,11 @@ PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 
     PhysicalNumber* help=new PhysicalNumber (0,unit);
 
-    *help+=rhs;
+    *help+=*this;
 
-    *help-=*this;
+    *help-=rhs;
 
-    return
-
-            *help;
+    return *help;
 
 }
 
@@ -586,8 +584,8 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
         else
             return in;
     }
-    return in;
-    
+
+
 }
 
 
