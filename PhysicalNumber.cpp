@@ -493,11 +493,12 @@ PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& rhs)
 
 }
 
-PhysicalNumber& PhysicalNumber::operator-()
+PhysicalNumber PhysicalNumber::operator-()
 
 {
-    PhysicalNumber a(-(this->value),this->unit);
-    return a;
+    //PhysicalNumber a(-(this->value),this->unit);
+
+    return PhysicalNumber(((this->value)*(-1)),this->unit);
 }
 
 PhysicalNumber& PhysicalNumber::operator+()
@@ -550,8 +551,9 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
 
 
 
-istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
-{
+
+
+istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
     string temp1, value1;
     int posStart=0;
     int posEnd=0;
