@@ -463,9 +463,9 @@ PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber& rhs)
 
         PhysicalNumber* help=new PhysicalNumber(0,unit);
 
-        *help+=rhs;
-
         *help+=*this;
+
+        *help+=rhs;
 
         return
 
