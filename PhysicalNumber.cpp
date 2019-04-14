@@ -12,6 +12,7 @@ using namespace std;
 
 #include <stdexcept>
 #include <stdlib.h>
+#include <iomanip>
 
 int PhysicalNumber:: samefamily  (const PhysicalNumber& rhs){
 
@@ -627,7 +628,7 @@ ostream& ariel::operator<<(ostream &out, const PhysicalNumber &a) {
 
 
 
-    out<<a.value<<"["<<unitName<<"]";
+    out<<setprecision(6)<<a.value<<"["<<unitName<<"]";
 
     return out;
 
