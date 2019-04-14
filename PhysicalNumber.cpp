@@ -586,7 +586,7 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
         else
             return in;
     }
-
+        return in;
 
 }
 
