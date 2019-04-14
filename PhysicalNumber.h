@@ -20,7 +20,7 @@ namespace ariel
         double value;
 
         Unit unit;
-
+        PhysicalNumber();
         PhysicalNumber(double num, Unit type):value(num),unit(type)
 
         {
