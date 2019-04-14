@@ -565,11 +565,12 @@ PhysicalNumber& PhysicalNumber::operator--()//prefix
 
 
 istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a) {
-    string temp1, value;
+    string temp1, value1;
     int posStart=0;
     in>>temp1;
     posStart=temp1.find('[');
-    value=temp1.substr(0,posStart);
+    value1=temp1.substr(0,posStart);
+    a.value=atof(value1.c_str());
     temp1=temp1.substr(posStart+1,temp1.length()-2-posStart);
     if(temp1=="cm")
         a.unit=Unit ::CM;
