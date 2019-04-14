@@ -414,7 +414,7 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
         return in;
     else {
         value1 = temp1.substr(0, posStart);
-        a.value = stod(value1);
+        
         temp1 = temp1.substr(posStart + 1, temp1.length() - 2 - posStart);
         if ((temp1 == "cm") || (temp1 == "CM"))
             a.unit = Unit::CM;
@@ -437,6 +437,7 @@ istream& ariel::operator>>(istream &in, ariel::PhysicalNumber &a)
         else
             return in;
     }
+    a.value = stod(value1);
     return in;
 
 }
