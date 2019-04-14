@@ -42,11 +42,11 @@ void PhysicalNumber:: convert(double& a,double& b,int family,const PhysicalNumbe
     else if(family==2)
     {
         if(unit==Unit::SEC)
-            a=a/120;
+            a=a/3600;
         if(unit==Unit::MIN)
             a=a/60;
         if(rhs.unit==Unit::SEC)
-            b=b/120;
+            b=b/3600;
         if(rhs.unit==Unit::MIN)
             b=b/60;
     }
