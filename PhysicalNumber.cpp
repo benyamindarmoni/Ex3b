@@ -353,7 +353,7 @@ PhysicalNumber PhysicalNumber::operator-()
 PhysicalNumber PhysicalNumber::operator+()
 
 {
-    return *this;
+    return PhysicalNumber(this->value, this->unit);
 }
 
 PhysicalNumber& PhysicalNumber::operator++(int)//postfix
