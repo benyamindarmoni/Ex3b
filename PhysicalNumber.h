@@ -29,9 +29,9 @@ namespace ariel
 
         {
 
-            value=num;
+           // value=num;
 
-            unit=type;
+         //   unit=type;
 
         }
 
